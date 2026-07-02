@@ -1,0 +1,95 @@
+import 'dart:convert';
+import 'package:get/get.dart';
+import '../../../core/models/event.dart';
+import '../../../core/services/api_service.dart';
+
+class HomeController extends GetxController {
+  late final ApiService _api;
+
+  final RxList<Event> events = <Event>[].obs;
+  final RxList<Category> categories = <Category>[].obs;
+  final RxBool isLoading = false.obs;
+  final RxString selectedCategory = 'All'.obs;
+  final RxInt featuredPageIndex = 0.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    _api = Get.find<ApiService>();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    isLoading.value = true;
+    try {
+      await Future.wait([
+        fetchEvents(),
+        fetchCategories(),
+      ]);
+    } catch (e) {
+      Get.printError(info: 'Error fetching home data: $e');
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> fetchEvents() async {
+    try {
+      final response = await _api.get('/events');
+      if (response.statusCode == 200) {
+        final List<dynamic> decodedList = jsonDecode(response.body);
+        events.value = decodedList
+            .map((item) => Event.fromJson(item as Map<String, dynamic>))
+            .toList();
+      }
+    } catch (e) {
+      Get.printError(info: 'Error fetching events: $e');
+    }
+  }
+
+  Future<void> fetchCategories() async {
+    try {
+      final response = await _api.get('/categories');
+      if (response.statusCode == 200) {
+        final List<dynamic> decodedList = jsonDecode(response.body);
+        categories.value = decodedList
+            .map((item) => Category.fromJson(item as Map<String, dynamic>))
+            .toList();
+      }
+    } catch (e) {
+      Get.printError(info: 'Error fetching categories: $e');
+    }
+  }
+
+  List<Event> get featuredEvents {
+    return events.where((e) => e.featured).toList();
+  }
+
+  List<String> get categoryNames {
+    final List<String> names = ['All'];
+    for (var cat in categories) {
+      if (cat.name.isNotEmpty && !names.contains(cat.name)) {
+        names.add(cat.name);
+      }
+    }
+    // Fallback parsing from events
+    if (names.length == 1) {
+      for (var e in events) {
+        if (e.category != null && e.category!.name.isNotEmpty) {
+          if (!names.contains(e.category!.name)) {
+            names.add(e.category!.name);
+          }
+        }
+      }
+    }
+    return names;
+  }
+
+  List<Event> get otherEvents {
+    final nonFeatured = events.where((e) => !e.featured).toList();
+    if (selectedCategory.value == 'All') {
+      return nonFeatured;
+    }
+    return nonFeatured.where((e) => e.category?.name == selectedCategory.value).toList();
+  }
+}
