@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import app from './src/app.js';
 import connectDB from './src/config/db.js';
+import { seedSampleBooking } from './src/config/seed.js';
 import { initCronJobs } from './src/jobs/cron.js';
 import './src/config/firebase.js';
 
@@ -14,6 +15,9 @@ const startServer = async () => {
     // Connect to MongoDB
     await connectDB();
 
+    // Seed sample booking if present
+    await seedSampleBooking();
+
     // Initialize scheduled cron jobs 
     initCronJobs();
 
@@ -26,6 +30,7 @@ const startServer = async () => {
     console.error('Failed to start server:', error);
     process.exit(1);
   }
-};
+}; 
 
 startServer();
+ 

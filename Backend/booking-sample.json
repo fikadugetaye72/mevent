@@ -1,0 +1,39 @@
+{
+  "api_request_payload": {
+    "eventId": "c8efc724-a9ca-4e52-9cff-ba4d5d439932",
+    "ticketType": "vip",
+    "seats": 3,
+    "email": "user@example.com",
+    "screenshotUrl": "https://res.cloudinary.com/hodzrxdq/image/upload/v1782940128/posters/1782940127430-801936159_lyxh4p.jpg"
+  },
+  "database_document": {
+    "_id": "",
+    "user": "88044eea-e613-4815-b0df-5fde62b8f526",
+    "email": "user@example.com",
+    "event": "c8efc724-a9ca-4e52-9cff-ba4d5d439932",
+    "ticketType": "vip",
+    "seats": 3,
+    "totalPaid": 200,
+    "screenshotUrl": "https://res.cloudinary.com/hodzrxdq/image/upload/v1782940128/posters/1782940127430-801936159_lyxh4p.jpg",
+    "status": "pending",
+    "checkedIn": false,
+    "checkedInAt": null,
+    "createdAt": "2026-07-14T12:00:00.000Z",
+    "updatedAt": "2026-07-14T12:00:00.000Z"
+  },
+  "database_document_2": {
+    "_id": "",
+    "user": "88044eea-e613-4815-b0df-5fde62b8f526",
+    "email": "anotheruser@example.com",
+    "event": "c8efc724-a9ca-4e52-9cff-ba4d5d439932",
+    "ticketType": "regular",
+    "seats": 1,
+    "totalPaid": 100,
+    "screenshotUrl": "https://res.cloudinary.com/hodzrxdq/image/upload/v1782940128/posters/1782940127430-801936159_lyxh4p.jpg",
+    "status": "pending",
+    "checkedIn": false,
+    "checkedInAt": null,
+    "createdAt": "2026-07-14T13:00:00.000Z",
+    "updatedAt": "2026-07-14T13:00:00.000Z"
+  }
+}

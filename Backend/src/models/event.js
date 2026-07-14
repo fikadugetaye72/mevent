@@ -68,6 +68,11 @@ const eventSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  code: {
+    type: String,
+    unique: true,
+    sparse: true,
+  },
 }, {
   timestamps: true,
   toJSON: {
@@ -88,6 +93,24 @@ const eventSchema = new mongoose.Schema({
       return ret;
     },
   },
+});
+
+eventSchema.pre('save', async function() {
+  if (!this.code) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let isUnique = false;
+    while (!isUnique) {
+      let code = '';
+      for (let i = 0; i < 7; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      const existing = await this.constructor.findOne({ code });
+      if (!existing) {
+        this.code = code;
+        isUnique = true;
+      }
+    }
+  }
 });
 
 const Event = mongoose.model('Event', eventSchema);

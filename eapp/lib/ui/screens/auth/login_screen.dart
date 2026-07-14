@@ -29,7 +29,7 @@ class LoginScreen extends StatelessWidget {
                 
                 // Welcome Message
                 const Text(
-                  'እንኳን ደህና መጡ',
+                  'Welcome Back',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 24,
@@ -38,7 +38,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'ወደ ዝግጅቶች አስተዳደር መተግበሪያ ይግቡ\n(Login to Event Management App)',
+                  'Login to Event Management App',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14,
@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
                   controller: controller.emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    labelText: 'ኢሜል (Email)',
+                    labelText: 'Email',
                     prefixIcon: const Icon(Icons.email_outlined),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -66,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                       controller: controller.passwordController,
                       obscureText: !controller.isPasswordVisible.value,
                       decoration: InputDecoration(
-                        labelText: 'የይለፍ ቃል (Password)',
+                        labelText: 'Password',
                         prefixIcon: const Icon(Icons.lock_outline),
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -102,7 +102,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                             )
                           : const Text(
-                              'ይግቡ (Login)',
+                              'Login',
                               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                     )),
@@ -113,13 +113,13 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'መለያ የለዎትም? (No account?) ',
+                      "Don't have an account? ",
                       style: TextStyle(color: Colors.grey.shade600),
                     ),
                     TextButton(
                       onPressed: () => Get.toNamed(AppRoutes.register),
                       child: const Text(
-                        'ይመዝገቡ (Register)',
+                        'Register',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),

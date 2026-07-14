@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../home/home_screen.dart';
-import '../create_event/create_event_screen.dart';
 import '../profile/profile_screen.dart';
 import '../map/map_screen.dart';
 import '../favorites/favorites_screen.dart';
+import '../booking/my_bookings_screen.dart';
 
 class MainLayoutController extends GetxController {
   final RxInt currentIndex = 0.obs;
@@ -13,7 +13,7 @@ class MainLayoutController extends GetxController {
     return [
       const HomeScreen(),
       const MapScreen(),
-      const CreateEventScreen(),
+      const MyBookingsScreen(),
       const FavoritesScreen(),
       const ProfileScreen(),
     ];

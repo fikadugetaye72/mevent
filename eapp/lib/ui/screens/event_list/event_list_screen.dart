@@ -15,7 +15,7 @@ class EventListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'ሁሉም ዝግጅቶች (All Events)',
+          'All Events',
           style: TextStyle(
             color: AppColors.primaryDark,
             fontWeight: FontWeight.bold,
@@ -94,7 +94,7 @@ class EventListScreen extends StatelessWidget {
                         Icon(Icons.calendar_today_outlined, size: 64, color: Colors.grey.shade400),
                         const SizedBox(height: 16),
                         Text(
-                          'ከዚህ ዘርፍ ምንም ዝግጅት አልተገኘም (No events found)',
+                          'No events found',
                           style: TextStyle(color: Colors.grey.shade600, fontSize: 15),
                         ),
                       ],
@@ -227,7 +227,7 @@ class EventListScreen extends StatelessWidget {
                                         children: [
                                           Text(
                                             event.price == null || event.price == 0 
-                                                ? 'Free / ነፃ' 
+                                                ? 'Free' 
                                                 : '\$${event.price!.toStringAsFixed(1)}',
                                             style: const TextStyle(
                                               color: AppColors.secondaryBlue,

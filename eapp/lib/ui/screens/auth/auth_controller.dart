@@ -36,7 +36,7 @@ class AuthController extends GetxController {
     final password = passwordController.text.trim();
 
     if (email.isEmpty || password.isEmpty) {
-      Get.snackbar('X', 'እባክዎን ሁሉንም መስኮች ይሙሉ (Please fill all fields)');
+      Get.snackbar('Alert', 'Please fill all fields');
       return;
     }
 
@@ -47,7 +47,7 @@ class AuthController extends GetxController {
     if (success) {
       Get.offAllNamed(AppRoutes.mainLayout);
     } else {
-      Get.snackbar('ስህተት (Error)', 'የኢሜል ወይም የይለፍ ቃል ስህተት ነው (Invalid email or password)');
+      Get.snackbar('Error', 'Invalid email or password');
     }
   }
 
@@ -57,7 +57,7 @@ class AuthController extends GetxController {
     final password = passwordController.text.trim();
 
     if (username.isEmpty || email.isEmpty || password.isEmpty) {
-      Get.snackbar('X', 'እባክዎን ሁሉንም መስኮች ይሙሉ (Please fill all fields)');
+      Get.snackbar('Alert', 'Please fill all fields');
       return;
     }
 
@@ -68,7 +68,7 @@ class AuthController extends GetxController {
     if (success) {
       Get.offAllNamed(AppRoutes.mainLayout);
     } else {
-      Get.snackbar('ስህተት (Error)', 'ይህ ኢሜል ወይም መለያ ስም ቀድሞ ተይዟል (Username/Email already exists)');
+      Get.snackbar('Error', 'Username or email already exists');
     }
   }
 }

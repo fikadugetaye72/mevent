@@ -12,7 +12,7 @@ class RegisterScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ይመዝገቡ (Register)'),
+        title: const Text('Register'),
         elevation: 0,
       ),
       body: SafeArea(
@@ -25,7 +25,7 @@ class RegisterScreen extends StatelessWidget {
               children: [
                 const SizedBox(height: 16),
                 const Text(
-                  'አዲስ መለያ ይፍጠሩ',
+                  'Create New Account',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 24,
@@ -34,7 +34,7 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'መረጃዎን ያስገቡ\n(Enter your credentials)',
+                  'Enter your credentials',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14,
@@ -47,7 +47,7 @@ class RegisterScreen extends StatelessWidget {
                 TextField(
                   controller: controller.usernameController,
                   decoration: InputDecoration(
-                    labelText: 'መለያ ስም (Username)',
+                    labelText: 'Username',
                     prefixIcon: const Icon(Icons.person_outline),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -61,7 +61,7 @@ class RegisterScreen extends StatelessWidget {
                   controller: controller.emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    labelText: 'ኢሜል (Email)',
+                    labelText: 'Email',
                     prefixIcon: const Icon(Icons.email_outlined),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -75,7 +75,7 @@ class RegisterScreen extends StatelessWidget {
                       controller: controller.passwordController,
                       obscureText: !controller.isPasswordVisible.value,
                       decoration: InputDecoration(
-                        labelText: 'የይለፍ ቃል (Password)',
+                        labelText: 'Password',
                         prefixIcon: const Icon(Icons.lock_outline),
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -111,7 +111,7 @@ class RegisterScreen extends StatelessWidget {
                               ),
                             )
                           : const Text(
-                              'ይመዝገቡ (Register)',
+                              'Register',
                               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                     )),

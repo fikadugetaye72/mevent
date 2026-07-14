@@ -15,6 +15,8 @@ const AdminLayout: React.FC = () => {
         return 'System Overview';
       case '/events':
         return 'Events Management';
+      case '/bookings':
+        return 'Bookings Management';
       case '/users':
         return 'Admins Management';
       case '/settings':

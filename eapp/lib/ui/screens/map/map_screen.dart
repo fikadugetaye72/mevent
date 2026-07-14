@@ -7,7 +7,7 @@ class MapScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('የዝግጅቶች ካርታ (Event Map)'),
+        title: const Text('Event Map'),
       ),
       body: Center(
         child: Column(
@@ -20,12 +20,12 @@ class MapScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const Text(
-              'ካርታ (Map View)',
+              'Map View',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(
-              'በአቅራቢያዎ ያሉ ዝግጅቶችን በካርታ ላይ ይመልከቱ\n(View events near you on the map)',
+              'View events near you on the map',
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
             ),

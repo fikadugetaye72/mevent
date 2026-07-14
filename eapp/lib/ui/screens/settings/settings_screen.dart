@@ -10,8 +10,9 @@ class SettingsScreen extends StatelessWidget {
     final controller = Get.put(SettingsController());
 
     return Scaffold(
+      backgroundColor: Colors.grey.shade50,
       appBar: AppBar(
-        title: const Text('ቅንብሮች (Settings)', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text('Settings', style: TextStyle(fontWeight: FontWeight.bold)),
       ),
       body: SafeArea(
         child: ListView(
@@ -25,7 +26,7 @@ class SettingsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Obx(() => SwitchListTile(
-                          title: const Text('የጨለማ ገጽታ (Dark Mode)'),
+                          title: const Text('Dark Mode'),
                           secondary: const Icon(Icons.dark_mode_outlined, color: Colors.purple),
                           value: controller.isDarkMode.value,
                           onChanged: controller.toggleTheme,
@@ -45,7 +46,7 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     ListTile(
                       leading: const Icon(Icons.logout, color: Colors.red),
-                      title: const Text('ውጣ (Logout)', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                      title: const Text('Logout', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
                       onTap: () => _confirmLogout(context, controller),
                     ),
                   ],
@@ -61,12 +62,12 @@ class SettingsScreen extends StatelessWidget {
   void _confirmLogout(BuildContext context, SettingsController controller) {
     Get.dialog(
       AlertDialog(
-        title: const Text('ውጣ (Logout)'),
-        content: const Text('መተግበሪያውን መልቀቅ ይፈልጋሉ?\n(Are you sure you want to logout?)'),
+        title: const Text('Logout'),
+        content: const Text('Are you sure you want to logout?'),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
-            child: const Text('አይ (Cancel)'),
+            child: const Text('Cancel'),
           ),
           ElevatedButton(
             onPressed: () {
@@ -74,7 +75,7 @@ class SettingsScreen extends StatelessWidget {
               controller.logout();
             },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            child: const Text('ውጣ (Logout)', style: TextStyle(color: Colors.white)),
+            child: const Text('Logout', style: TextStyle(color: Colors.white)),
           ),
         ],
       ),

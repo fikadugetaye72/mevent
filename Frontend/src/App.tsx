@@ -10,6 +10,7 @@ import AdminLayout from './layouts/AdminLayout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Events from './pages/Events';
+import Bookings from './pages/Bookings';
 import Users from './pages/Users';
 import Settings from './pages/Settings';
 
@@ -40,6 +41,7 @@ const App: React.FC = () => {
             >
               <Route index element={<Dashboard />} />
               <Route path="events" element={<Events />} />
+              <Route path="bookings" element={<Bookings />} />
               <Route path="users" element={<Users />} />
               <Route path="settings" element={<Settings />} />
             </Route>

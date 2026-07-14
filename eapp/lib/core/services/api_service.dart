@@ -52,4 +52,19 @@ class ApiService extends GetxService {
     final url = Uri.parse('${Constants.apiBaseUrl}$endpoint');
     return await http.delete(url, headers: _getHeaders());
   }
+
+  Future<http.Response> uploadFile(String endpoint, String filePath) async {
+    final url = Uri.parse('${Constants.apiBaseUrl}$endpoint');
+    final request = http.MultipartRequest('POST', url);
+    
+    // Get headers and remove application/json Content-Type so the request boundary is correctly auto-generated
+    final Map<String, String> headers = _getHeaders();
+    headers.remove('Content-Type');
+    request.headers.addAll(headers);
+    
+    request.files.add(await http.MultipartFile.fromPath('image', filePath));
+    
+    final streamedResponse = await request.send();
+    return await http.Response.fromStream(streamedResponse);
+  }
 }

@@ -3,6 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import { uploadToCloudinary, deleteFromCloudinary, extractPublicId } from '../config/cloudinary.js';
 import { sendEventNotification } from '../services/notificationService.js';
+import Booking from '../models/booking.js';
+import { sendEventUpdateEmail } from '../services/emailService.js';
 
 const parseJsonField = (field) => {
   if (!field) return undefined;
@@ -205,6 +207,18 @@ export const updateEvent = async (req, res) => {
     await event.save();
 
     const populatedEvent = await Event.findById(event._id).populate('category');
+    
+    // Dispatch email notifications to all users who booked this event
+    try {
+      const bookings = await Booking.find({ event: event._id });
+      const uniqueEmails = [...new Set(bookings.map(b => b.email).filter(Boolean))];
+      if (uniqueEmails.length > 0) {
+        sendEventUpdateEmail(uniqueEmails, populatedEvent);
+      }
+    } catch (bookingErr) {
+      console.error('[EMAIL NOTIFICATION TRIGGER ERROR]', bookingErr);
+    }
+
     sendEventNotification(populatedEvent, 'update');
     res.json(populatedEvent);
   } catch (error) {

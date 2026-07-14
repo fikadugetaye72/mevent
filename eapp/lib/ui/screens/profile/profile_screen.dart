@@ -12,7 +12,7 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('መገለጫ (My Profile)', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text('My Profile', style: TextStyle(fontWeight: FontWeight.bold)),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -25,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
           final user = controller.user.value;
           if (user == null) {
             return const Center(
-              child: Text('እባክዎን በመጀመሪያ ይግቡ (Please login to view profile)'),
+              child: Text('Please login to view profile'),
             );
           }
 
@@ -71,14 +71,22 @@ class ProfileScreen extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: const Icon(Icons.email_outlined, color: Colors.blue),
-                        title: const Text('ኢሜል (Email)'),
+                        title: const Text('Email'),
                         subtitle: Text(user.email),
                       ),
                       const Divider(height: 1),
                       ListTile(
                         leading: const Icon(Icons.person_pin_outlined, color: Colors.green),
-                        title: const Text('ተጠቃሚ መታወቂያ (User ID)'),
+                        title: const Text('User ID'),
                         subtitle: Text(user.id),
+                      ),
+                      const Divider(height: 1),
+                      ListTile(
+                        leading: const Icon(Icons.receipt_long_rounded, color: Colors.purple),
+                        title: const Text('My Bookings'),
+                        subtitle: const Text('View and manage your bookings'),
+                        trailing: const Icon(Icons.chevron_right),
+                        onTap: () => Get.toNamed(AppRoutes.myBookings),
                       ),
                     ],
                   ),

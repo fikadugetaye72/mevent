@@ -4,11 +4,12 @@ import '../ui/screens/auth/register_screen.dart';
 import '../ui/screens/main_layout/main_layout_screen.dart';
 import '../ui/screens/home/home_screen.dart';
 import '../ui/screens/event_detail/event_detail_screen.dart';
-import '../ui/screens/create_event/create_event_screen.dart';
 import '../ui/screens/profile/profile_screen.dart';
 import '../ui/screens/settings/settings_screen.dart';
 import '../ui/screens/splash/splash_screen.dart';
 import '../ui/screens/event_list/event_list_screen.dart';
+import '../ui/screens/booking/booking_form_screen.dart';
+import '../ui/screens/booking/my_bookings_screen.dart';
 import 'app_routes.dart';
 
 abstract class AppPages {
@@ -38,10 +39,6 @@ abstract class AppPages {
       page: () => const EventDetailScreen(),
     ),
     GetPage(
-      name: AppRoutes.createEvent,
-      page: () => const CreateEventScreen(),
-    ),
-    GetPage(
       name: AppRoutes.profile,
       page: () => const ProfileScreen(),
     ),
@@ -52,6 +49,14 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.eventList,
       page: () => const EventListScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.bookingForm,
+      page: () => const BookingFormScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.myBookings,
+      page: () => const MyBookingsScreen(),
     ),
   ];
 }

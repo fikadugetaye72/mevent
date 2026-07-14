@@ -190,7 +190,7 @@ class _SplashScreenState extends State<SplashScreen>
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'ዝግጅቶች አስተዳደር',
+                            'Event Management',
                             style: theme.textTheme.titleMedium?.copyWith(
                               letterSpacing: 0.5,
                               fontWeight: FontWeight.w500,
@@ -224,7 +224,7 @@ class _SplashScreenState extends State<SplashScreen>
                           ),
                           SizedBox(height: 12),
                           Text(
-                            'የደህንነት ፍተሻ (Checking security...)',
+                            'Checking security...',
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.grey,

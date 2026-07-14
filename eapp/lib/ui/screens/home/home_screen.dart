@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: AppColors.bgLight,
       appBar: AppBar(
         title: const Text(
-          'ዝግጅቶች (Explore Events)',
+          'Explore Events',
           style: TextStyle(
             color: AppColors.primaryDark,
             fontWeight: FontWeight.bold,
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                   Icon(Icons.event_busy, size: 64, color: Colors.grey.shade400),
                   const SizedBox(height: 16),
                   Text(
-                    'ምንም ዝግጅት አልተገኘም (No events found)',
+                    'No events found',
                     style: TextStyle(color: Colors.grey.shade600),
                   ),
                 ],
@@ -161,7 +161,7 @@ class HomeScreen extends StatelessWidget {
                                             elevation: 0,
                                           ),
                                           child: const Text(
-                                            'Book Now (ይመዝገቡ)',
+                                            'Book Now',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 14,
@@ -206,7 +206,7 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'የተመረጡ (Trending)',
+                          'Trending',
                           style: TextStyle(
                             color: AppColors.primaryDark,
                             fontSize: 18,
@@ -278,7 +278,7 @@ class HomeScreen extends StatelessWidget {
                     child: otherList.isEmpty
                         ? Center(
                             child: Text(
-                              'ምንም ዝግጅት የለም (No events)',
+                              'No events',
                               style: TextStyle(color: Colors.grey.shade500),
                             ),
                           )

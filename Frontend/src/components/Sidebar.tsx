@@ -8,7 +8,8 @@ import {
   Settings, 
   LogOut, 
   ChevronLeft, 
-  ChevronRight
+  ChevronRight,
+  Ticket
 } from 'lucide-react';
 import logoImg from '../assets/logo.png';
 import './Sidebar.css';
@@ -24,6 +25,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, setCollapsed }) => {
   const menuItems = [
     { name: 'Dashboard', path: '/', icon: LayoutDashboard },
     { name: 'Events', path: '/events', icon: Calendar },
+    { name: 'Bookings', path: '/bookings', icon: Ticket },
     { name: 'Admins', path: '/users', icon: Users },
     { name: 'Settings', path: '/settings', icon: Settings },
   ];

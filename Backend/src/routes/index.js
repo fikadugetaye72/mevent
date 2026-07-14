@@ -3,6 +3,7 @@ import authRoutes from './auth.js';
 import eventRoutes from './events.js';
 import categoryRoutes from './categories.js';
 import uploadRoutes from './upload.js';
+import bookingRoutes from './bookings.js';
 
 const router = express.Router();
 
@@ -10,5 +11,6 @@ router.use('/auth', authRoutes);
 router.use('/events', eventRoutes);
 router.use('/categories', categoryRoutes);
 router.use('/upload', uploadRoutes);
+router.use('/bookings', bookingRoutes);
 
 export default router;

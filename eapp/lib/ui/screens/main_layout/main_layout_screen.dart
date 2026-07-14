@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'main_layout_controller.dart';
+import '../../theme/app_theme.dart';
 
 class MainLayoutScreen extends StatelessWidget {
   const MainLayoutScreen({super.key});
@@ -17,11 +18,13 @@ class MainLayoutScreen extends StatelessWidget {
           children: controller.screens,
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => controller.changeTabIndex(2), // Direct index 2 is CreateEvent
+          onPressed: () => controller.changeTabIndex(2), // Direct index 2 is MyBookings
           shape: const CircleBorder(),
-          backgroundColor: const Color(0xFFFF5C5C), // Vibrant coral/red color from image
+          backgroundColor: controller.currentIndex.value == 2
+              ? AppColors.primaryDark
+              : AppColors.secondaryBlue,
           elevation: 4,
-          child: const Icon(Icons.add, color: Colors.white, size: 30),
+          child: const Icon(Icons.receipt_long_rounded, color: Colors.white, size: 28),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: Container(
