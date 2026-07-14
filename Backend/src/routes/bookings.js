@@ -108,22 +108,61 @@ router.post('/:id/check-in', authMiddleware, async (req, res) => {
       return res.status(403).json({ message: 'Access denied: Administrative privilege required.' });
     }
 
+    const { eventId } = req.body;
+    
+    // Check if the ID is a valid MongoDB ObjectId to prevent CastErrors
+    const mongoose = (await import('mongoose')).default;
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ message: 'Invalid ticket QR code format.' });
+    }
+
     const booking = await Booking.findById(req.params.id)
       .populate('event')
       .populate('user', 'username email');
 
     if (!booking) {
-      return res.status(404).json({ message: 'Booking not found.' });
+      return res.status(404).json({ message: 'Ticket not found in database.' });
+    }
+
+    // Verify event matching
+    const bookingEventId = booking.event._id ? booking.event._id.toString() : booking.event.toString();
+    if (eventId && bookingEventId !== eventId) {
+      return res.status(400).json({ 
+        message: 'This ticket is registered for a different event!',
+        booking: {
+          code: booking.code,
+          status: booking.status,
+          checkedIn: booking.checkedIn,
+          user: booking.user,
+          eventTitle: booking.event.title
+        }
+      });
     }
 
     if (booking.status !== 'confirmed') {
-      return res.status(400).json({ message: `This ticket is not active (Status: ${booking.status})` });
+      return res.status(400).json({ 
+        message: `This ticket cannot be checked in (Status: ${booking.status})`,
+        booking: {
+          code: booking.code,
+          status: booking.status,
+          checkedIn: booking.checkedIn,
+          user: booking.user,
+          eventTitle: booking.event.title
+        }
+      });
     }
 
     if (booking.checkedIn) {
       return res.status(400).json({ 
-        message: 'This ticket has already been scanned.',
-        checkedInAt: booking.checkedInAt 
+        message: 'Ticket already scanned / Checked-in.',
+        checkedInAt: booking.checkedInAt,
+        booking: {
+          code: booking.code,
+          status: booking.status,
+          checkedIn: booking.checkedIn,
+          user: booking.user,
+          eventTitle: booking.event.title
+        }
       });
     }
 
@@ -133,10 +172,18 @@ router.post('/:id/check-in', authMiddleware, async (req, res) => {
 
     res.json({
       message: 'Check-in successful',
-      booking
+      success: true,
+      booking: {
+        code: booking.code,
+        status: booking.status,
+        checkedIn: booking.checkedIn,
+        checkedInAt: booking.checkedInAt,
+        user: booking.user,
+        eventTitle: booking.event.title
+      }
     });
   } catch (error) {
-    console.error('Booking check-in error:', error);
+    console.error('Scan check-in error:', error);
     res.status(500).json({ message: 'Server error during check-in.', error: error.message });
   }
 });
